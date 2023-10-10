@@ -20,7 +20,6 @@ class App extends Component {
       ],
       term: "",
       filter: "all",
-      newSalary: localStorage.getItem("newSalary") || "",
     };
     this.maxId = 4;
   }
@@ -41,6 +40,7 @@ class App extends Component {
       rise: false,
       id: this.maxId++,
     };
+
     this.setState(({ data }) => {
       const newArr = [...data, newItem];
       return {
@@ -74,22 +74,6 @@ class App extends Component {
     this.setState({ term });
   };
 
-  onUpdateSalary = (newSalary) => {
-    localStorage.setItem("newSalary", newSalary);
-    this.setState({ newSalary });
-  };
-
-  onChangeSalary = (salary) => {
-    this.setState((prevState) => ({
-      data: prevState.data.map((item) => {
-        if (item.salary === salary) {
-          return item;
-        }
-        return { ...item, salary: salary };
-      }),
-    }));
-  };
-
   filterPost = (items, filter) => {
     switch (filter) {
       case "rise":
@@ -121,7 +105,6 @@ class App extends Component {
         </div>
 
         <EmployeesList
-          onUpdateSalary={(newSalary) => this.onUpdateSalary(newSalary)}
           data={visibleData}
           onDelete={this.deleteItem}
           onToggleProp={this.onToggleProp}

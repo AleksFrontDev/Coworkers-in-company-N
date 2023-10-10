@@ -14,9 +14,6 @@ const EmployeesList = ({
     const { id, ...itemProps } = item;
     return (
       <EmployeesListItem
-        onUpdateSalary={onUpdateSalary}
-        onChangeSalary={onChangeSalary}
-        newSalary={newSalary}
         key={id}
         {...itemProps}
         onDelete={() => onDelete(id)}
